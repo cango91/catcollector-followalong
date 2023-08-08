@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+from django.urls import reverse
 
 # Create your models here.
 
@@ -12,4 +13,7 @@ class Cat(models.Model):
     
     def __str__(self):
         return f"{self.id}: {self.name}, {self.breed}, {self.age} y.o."
+    
+    def get_absolute_url(self):
+        return reverse("cats:detail", kwargs={"cat_id": self.id})
     
